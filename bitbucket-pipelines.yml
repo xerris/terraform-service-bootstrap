@@ -1,0 +1,98 @@
+# Template Terraform to deploy to Cloud Infrastructure
+
+# This template allows you to deploy your infrastructure using Terraform to supported cloud providers.
+# The workflow allows running tests, security scans on feature branches (as well as master).
+# After merging code to master the infrastructure will be deployed to cloud according to the given terraform template.
+
+# Prerequisites: credentials according to used cloud provider.
+# For advanced cases, please, follow terraform docs https://www.terraform.io/docs/index.html.
+
+
+image: hashicorp/terraform:0.14.5
+
+pipelines:
+  tags:
+    '*.*.*-rc.*':
+      - step:
+          name: Security Scan
+          script:
+            # Run a security scan for sensitive data.
+            # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+            - pipe: atlassian/git-secrets-scan:0.4.3
+      - step:
+          size: 2x
+          name: Test & Deploy to Prod
+          deployment: Production
+          trigger: manual
+          services:
+            - docker
+          script:
+            - export ENV=prod
+            - cd infra
+            - sh backup_script.sh
+            - sh terraform_exec.sh 1
+  branches:
+    master:
+        - step:
+            name: Security Scan
+            script:
+              # Run a security scan for sensitive data.
+              # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+              - pipe: atlassian/git-secrets-scan:0.4.3
+        - step:
+            name: Build & Test
+            image: node:12-alpine
+            caches:
+              - node
+            script:
+              - npm install
+              - npm run build
+              - npm run lint
+              #- export JEST_JUNIT_OUTPUT_DIR=test-results
+              - npm run test:ci
+        - step:
+            size: 2x
+            name: Deploy to Stage
+            deployment: Staging
+            services:
+              - docker
+            script:
+              - export ENV=stage
+              - cd infra
+              - sh terraform_exec.sh 1
+    '{XDP-*}':
+      - step:
+          name: Security Scan
+          script:
+            # Run a security scan for sensitive data.
+            # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+            - pipe: atlassian/git-secrets-scan:0.4.3
+      - step:
+          name: Build & Test
+          image: node:12-alpine
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build
+            - npm run lint
+            #- export JEST_JUNIT_OUTPUT_DIR=test-results
+            - npm run test:ci
+      - step:
+          size: 2x
+          name: Deploy to DEV
+          deployment: Development
+          trigger: manual
+          caches:
+            - docker
+          services:
+            - docker
+          script:
+            - export ENV=dev
+            - cd infra
+            - sh terraform_exec.sh 1
+
+definitions:
+  services:
+    docker:
+      memory: 3072
