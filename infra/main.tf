@@ -14,5 +14,5 @@ locals {
     "prod"  = "production"
   }, var.env, "production")
 
-  base_ecr_url                           = "${local.ecr_address}/${data.terraform_remote_state.platform-infra.outputs.ecr_name}"
+  base_ecr_url = "${local.ecr_address}/${data.terraform_remote_state.platform-infra.outputs.ecr_name}"
 }

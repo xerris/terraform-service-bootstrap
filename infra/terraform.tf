@@ -17,8 +17,8 @@ provider "aws" {
 data "terraform_remote_state" "platform-infra" {
   backend = "s3"
   config = {
-    bucket       = var.infra_bucket[var.env]
-    key          = var.infra_file[var.env]
-    region       = var.region
+    bucket = var.infra_bucket[var.env]
+    key    = var.infra_file[var.env]
+    region = var.region
   }
 }
