@@ -10,7 +10,7 @@ echo "###############################"
 ENV="${ENV:-dev}"
 AWS_REGION="${AWS_REGION:-us-east-1}"
 
-Apply=${2:-0} #If set terraform will force apply changes
+apply=${2:-0} #If set terraform will force apply changes
 commit_hash=`git rev-parse --short HEAD`
 build_number="${BITBUCKET_BUILD_NUMBER:=local}"
 #export TF_LOG=TRACE
