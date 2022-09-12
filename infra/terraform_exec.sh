@@ -10,7 +10,7 @@ echo "###############################"
 ENV="${ENV:-dev}"
 AWS_REGION="${AWS_REGION:-us-east-1}"
 
-apply=${1:-0} #If set terraform will force apply changes
+apply=${2:-0} #If set terraform will force apply changes
 commit_hash=`git rev-parse --short HEAD`
 build_number="${BITBUCKET_BUILD_NUMBER:=local}"
 #export TF_LOG=TRACE
@@ -31,4 +31,10 @@ if [ $apply == 1 ]; then
     echo "## Executing terraform apply ##"
     echo "###############################"
     terraform apply --auto-approve -var-file=envs/${ENV}.tfvars
+
+elif [ $APPLY == 2 ]; then
+    echo "###############################"
+    echo "## Executing terraform destroy for CI/CD ##"
+    echo "###############################"
+    terraform destroy --auto-approve -var-file=envs/${ENV}.tfvars
 fi
