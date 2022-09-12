@@ -27,7 +27,7 @@ variable "infra_bucket" {
 variable "infra_file" {
   type = map(any)
   default = {
-    dev        = "dev/platform-infra.tfstate"
+    dev        = "dev/platform-anubhav-test-infra.tfstate"
     stage      = "stage/platform-infra.tfstate"
     prod       = "prod/platform-infra.tfstate"
     poc-xerris = "poc-xerris/platform-infra.tfstate"
