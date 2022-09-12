@@ -10,7 +10,7 @@ echo "###############################"
 ENV="${ENV:-dev}"
 AWS_REGION="${AWS_REGION:-us-east-1}"
 
-apply=${2:-0} #If set terraform will force apply changes
+apply=${1:-0} #If set terraform will force apply changes
 commit_hash=`git rev-parse --short HEAD`
 build_number="${BITBUCKET_BUILD_NUMBER:=local}"
 #export TF_LOG=TRACE
@@ -19,7 +19,7 @@ export TF_VAR_build_number="${build_number}"
 
 terraform init \
 -backend-config="bucket=terraform-state-devservice" \
--backend-config="key=${ENV}/platform-anubhav-test-infra.tfstate" \
+-backend-config="key=${ENV}/platform-anubhav-test-service.tfstate" \
 -backend-config="dynamodb_table=xerris-terraform-tabel-${ENV}" \
 -backend-config="region=${AWS_REGION}"
 
