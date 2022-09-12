@@ -18,9 +18,9 @@ export TF_VAR_commit_hash="${commit_hash}"
 export TF_VAR_build_number="${build_number}"
 
 terraform init \
--backend-config="bucket=terraform-state-${ENV}" \
--backend-config="key=${ENV}/platform-service.tfstate" \
--backend-config="dynamodb_table=${ENV}-terraform-state-lock-dynamo" \
+-backend-config="bucket=terraform-state-devservice" \
+-backend-config="key=${ENV}/platform-anubhav-test-infra.tfstate" \
+-backend-config="dynamodb_table=xerris-terraform-tabel-${ENV}" \
 -backend-config="region=${AWS_REGION}"
 
 terraform validate
