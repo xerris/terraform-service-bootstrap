@@ -7,7 +7,7 @@ echo "###############################"
 echo "## Starting Terraform script ##"
 echo "###############################"
 
-ENV="${ENV:dev}"
+ENV="${ENV:-dev}"
 AWS_REGION="${AWS_REGION:-us-east-1}"
 
 apply=${1:-0} #If set terraform will force apply changes
