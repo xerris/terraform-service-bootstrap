@@ -13,6 +13,9 @@ variable "commit_hash" {
 variable "env" {
   default = "dev"
 }
+variable "vpc_id" {
+  default = "Bootstrap-Service-vpc"
+}
 
 variable "infra_bucket" {
   type = map(any)
