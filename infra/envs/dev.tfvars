@@ -1,4 +1,4 @@
 region     = "us-east-1"
 env        = "dev"
-subnet_ids = ["subnet-0f31ca1b46239f8a7", "subnet-024e67393a3ddedb1"]
-vpc_id     = "vpc-05411fb57f73c676d"
+subnet_ids = ["subnet-0d457cb876d29c94d", "subnet-0603a375753395654"]
+vpc_id     = "vpc-0f4bc5aae5ef11dac"
