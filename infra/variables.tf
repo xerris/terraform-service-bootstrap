@@ -16,6 +16,9 @@ variable "env" {
 variable "vpc_id" {
   default = "Bootstrap-Service-vpc"
 }
+variable "subnet_ids" {
+  default = "nithin_id"
+}
 
 variable "infra_bucket" {
   type = map(any)
