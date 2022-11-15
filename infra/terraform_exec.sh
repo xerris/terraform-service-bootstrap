@@ -18,9 +18,9 @@ export TF_VAR_commit_hash="${commit_hash}"
 export TF_VAR_build_number="${build_number}"
 
 terraform init \
--backend-config="bucket=terraform-state-${ENV}" \
+-backend-config="bucket=test-bucket-nithin-service-bootstrap-${ENV}" \
 -backend-config="key=${ENV}/platform-service.tfstate" \
--backend-config="dynamodb_table=${ENV}-terraform-state-lock-dynamo" \
+-backend-config="dynamodb_table=${ENV}-service-bootsrap-nithin" \
 -backend-config="region=${AWS_REGION}"
 
 terraform validate
