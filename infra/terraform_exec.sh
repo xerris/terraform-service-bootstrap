@@ -18,17 +18,17 @@ export TF_VAR_commit_hash="${commit_hash}"
 export TF_VAR_build_number="${build_number}"
 
 terraform init \
--backend-config="bucket=test-bucket-nithin-service-bootstrap-${ENV}" \
--backend-config="key=${ENV}/platform-service.tfstate" \
--backend-config="dynamodb_table=${ENV}-service-bootsrap-nithin" \
+-backend-config="bucket=test-bucket-nithin-service-bootstrap-dev" \
+-backend-config="key=dev/platform-service.tfstate" \
+-backend-config="dynamodb_table=dev-service-bootsrap-nithin" \
 -backend-config="region=${AWS_REGION}"
 
 terraform validate
-terraform plan -var-file=envs/${ENV}.tfvars
+terraform plan -var-file=envs/dev.tfvars
 
 if [ $apply == 1 ]; then
     echo "###############################"
     echo "## Executing terraform apply ##"
     echo "###############################"
-    terraform apply --auto-approve -var-file=envs/${ENV}.tfvars
+    terraform apply --auto-approve -var-file=envs/dev.tfvars
 fi
