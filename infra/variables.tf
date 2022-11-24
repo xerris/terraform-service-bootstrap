@@ -17,7 +17,7 @@ variable "env" {
 variable "infra_bucket" {
   type = map(any)
   default = {
-    dev        = "terraform-state-dev"
+    dev        = "test-bucket-nithin-dev"
     stage      = "terraform-state-stage"
     prod       = "terraform-state-prod"
     poc-xerris = "terraform-state-poc-xerris"

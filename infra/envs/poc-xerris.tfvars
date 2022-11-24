@@ -1,3 +1,3 @@
 region = "us-east-1"
-env    = "poc-xerris"
+env    = "dev"
 
