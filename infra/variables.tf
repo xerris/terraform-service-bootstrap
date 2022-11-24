@@ -11,13 +11,13 @@ variable "commit_hash" {
 }
 
 variable "env" {
-  default = "dev"
+  default = "dev-allen"
 }
 
 variable "infra_bucket" {
   type = map(any)
   default = {
-    dev        = "terraform-state-dev"
+    dev-allen  = "project-terraform-state-dev-allen"
     stage      = "terraform-state-stage"
     prod       = "terraform-state-prod"
     poc-xerris = "terraform-state-poc-xerris"
@@ -27,7 +27,7 @@ variable "infra_bucket" {
 variable "infra_file" {
   type = map(any)
   default = {
-    dev        = "dev/platform-infra.tfstate"
+    dev-allen  = "dev/platform-infra.tfstate"
     stage      = "stage/platform-infra.tfstate"
     prod       = "prod/platform-infra.tfstate"
     poc-xerris = "poc-xerris/platform-infra.tfstate"

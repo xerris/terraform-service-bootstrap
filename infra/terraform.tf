@@ -1,7 +1,7 @@
 terraform {
-  backend "s3" {
-  }
+  backend "s3" {}
 }
+
 
 provider "aws" {
   region = var.region
@@ -12,7 +12,6 @@ provider "aws" {
   skip_credentials_validation = true
   skip_requesting_account_id  = true
 }
-
 
 data "terraform_remote_state" "platform-infra" {
   backend = "s3"
