@@ -18,9 +18,9 @@ export TF_VAR_commit_hash="${commit_hash}"
 export TF_VAR_build_number="${build_number}"
 
 terraform init \
--backend-config="bucket=nithin-xdp-101-${ENV}" \
+-backend-config="bucket=nithin-xdp-101-dev" \
 -backend-config="key=${ENV}/platform-service-test.tfstate" \
--backend-config="dynamodb_table=nithin-table-service-bootsrap-${ENV}" \
+-backend-config="dynamodb_table=-${ENV}-nithin-table-service-bootsrap" \
 -backend-config="region=${AWS_REGION}"
 
 terraform validate

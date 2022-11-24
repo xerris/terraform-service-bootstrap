@@ -13,17 +13,11 @@ variable "commit_hash" {
 variable "env" {
   default = "dev"
 }
-variable "vpc_id" {
-  default = "Bootstrap-Service-vpc"
-}
-variable "subnet_ids" {
-  default = "nithin_id"
-}
 
 variable "infra_bucket" {
   type = map(any)
   default = {
-    dev        = "test-bucket-nithin-dev"
+    dev        = "nithin-xdp-101-dev"
     stage      = "terraform-state-stage"
     prod       = "terraform-state-prod"
     poc-xerris = "terraform-state-poc-xerris"
@@ -33,7 +27,7 @@ variable "infra_bucket" {
 variable "infra_file" {
   type = map(any)
   default = {
-    dev        = "dev/platform-service.tfstate"
+    dev        = "dev/platform-service-test.tfstate"
     stage      = "stage/platform-infra.tfstate"
     prod       = "prod/platform-infra.tfstate"
     poc-xerris = "poc-xerris/platform-infra.tfstate"
