@@ -23,7 +23,7 @@ variable "subnet_ids" {
 variable "infra_bucket" {
   type = map(any)
   default = {
-    dev        = "terraform-state-dev"
+    dev        = "test-bucket-nithin-dev"
     stage      = "terraform-state-stage"
     prod       = "terraform-state-prod"
     poc-xerris = "terraform-state-poc-xerris"
@@ -33,7 +33,7 @@ variable "infra_bucket" {
 variable "infra_file" {
   type = map(any)
   default = {
-    dev        = "dev/platform-infra.tfstate"
+    dev        = "dev/platform-service.tfstate"
     stage      = "stage/platform-infra.tfstate"
     prod       = "prod/platform-infra.tfstate"
     poc-xerris = "poc-xerris/platform-infra.tfstate"
