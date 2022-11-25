@@ -27,7 +27,7 @@ variable "infra_bucket" {
 variable "infra_file" {
   type = map(string)
   default = {
-    dev        = "alias/terraform.tfstate"
+    dev        = "alias/platform-service-ginu.tfstate"
     stage      = "stage/platform-infra.tfstate"
     prod       = "prod/platform-infra.tfstate"
     poc-xerris = "poc-xerris/platform-infra.tfstate"
