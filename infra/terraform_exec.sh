@@ -18,9 +18,9 @@ export TF_VAR_commit_hash="${commit_hash}"
 export TF_VAR_build_number="${build_number}"
 
 terraform init \
--backend-config="bucket=dev-ginu-s3-newbucket" \
+-backend-config="bucket=dev-s3-ginu-servicebucket" \
 -backend-config="key=alias/platform-service-ginu.tfstate" \
--backend-config="dynamodb_table=ginu-table-state-lock" \
+-backend-config="dynamodb_table=dev-ginu-servicedynamo" \
 -backend-config="region=${AWS_REGION}"
 
 terraform validate 
