@@ -18,12 +18,12 @@ export TF_VAR_commit_hash="${commit_hash}"
 export TF_VAR_build_number="${build_number}"
 
 terraform init \
--backend-config="bucket=terraform-state-${ENV}" \
--backend-config="key=${ENV}/platform-service.tfstate" \
--backend-config="dynamodb_table=${ENV}-terraform-state-lock-dynamo" \
+-backend-config="bucket=dev-ginu-s3-newbucket" \
+-backend-config="key=alias/platform-service-ginu.tfstate" \
+-backend-config="dynamodb_table=ginu-table-state-lock" \
 -backend-config="region=${AWS_REGION}"
 
-terraform validate
+terraform validate 
 terraform plan -var-file=envs/${ENV}.tfvars
 
 if [ $apply == 1 ]; then

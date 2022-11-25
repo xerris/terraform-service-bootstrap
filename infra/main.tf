@@ -7,7 +7,7 @@ locals {
   image_minor_version = "1"
   image_patch_version = format("%s-%s", var.build_number, var.commit_hash)
   image_version       = "${local.image_major_version}.${local.image_minor_version}.${local.image_patch_version}"
-  base_image          = "${data.aws_caller_identity.this.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${var.env}-isengard-xerris-ecr:${local.image_version}"
+  base_image          = "${data.aws_caller_identity.this.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${var.env}-ginu-ecr:${local.image_version}"
   node_env = lookup({
     "dev"   = "development",
     "stage" = "stage",
