@@ -1,10 +1,12 @@
 terraform {
   backend "s3" {
+   
   }
-}
+}  
 
 provider "aws" {
   region = var.region
+  #shared_credentials_files = ["~/.aws/credentials"]
   # Make it faster by skipping something
   skip_get_ec2_platforms      = true
   skip_metadata_api_check     = true
