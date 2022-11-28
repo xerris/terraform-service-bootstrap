@@ -4,6 +4,7 @@ on:
     branches:
     - master
     - XDP-*
+    - service-*
   #pull_request:
 jobs:
   terraform:

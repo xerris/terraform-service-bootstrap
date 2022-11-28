@@ -7,6 +7,8 @@ echo "###############################"
 echo "## Starting Terraform script ##"
 echo "###############################"
 
+ENV="dev"
+AWS_REGION="us-east-1"
 ENV="${ENV:-dev}"
 AWS_REGION="${AWS_REGION:-us-east-1}"
 
@@ -18,17 +20,17 @@ export TF_VAR_commit_hash="${commit_hash}"
 export TF_VAR_build_number="${build_number}"
 
 terraform init \
--backend-config="bucket=terraform-state-${ENV}" \
+-backend-config="bucket=project-terraform-state-dev-allen" \
 -backend-config="key=${ENV}/platform-service.tfstate" \
--backend-config="dynamodb_table=${ENV}-terraform-state-lock-dynamo" \
--backend-config="region=${AWS_REGION}"
+-backend-config="dynamodb_table= project-terraform-state-lock-dynamo" \
+-backend-config="region=${AWS_REGION}" -reconfigure
 
 terraform validate
-terraform plan -var-file=envs/${ENV}.tfvars
+terraform plan -var-file=envs/poc-xerris.tfvars -lock=false
 
-if [ $apply == 1 ]; then
+if [[ $apply == 1 ]]; then
     echo "###############################"
     echo "## Executing terraform apply ##"
     echo "###############################"
-    terraform apply --auto-approve -var-file=envs/${ENV}.tfvars
+    terraform apply --auto-approve -var-file=envs/poc-xerris.tfvars -lock=false
 fi
